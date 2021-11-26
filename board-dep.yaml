@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: board-deployment
+spec:
+  selector:
+    matchLabels:
+      app: board
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: board
+    spec:
+      containers:
+      - name: boardpod
+        image: gcr.io/iksem-296710/thingsboard # update to a new image
+        ports:
+        - containerPort: 9090
+        - containerPort: 1833
+        - containerPort: 5863
